@@ -1,6 +1,7 @@
 # ---- File: Home.py ----
 import streamlit as st
 import pandas as pd
+import os
 
 
 @st.cache_data
@@ -12,6 +13,7 @@ def load_data(uploaded_file, sheet):
 st.set_page_config(page_title="Stock Fundamental Data Viewer")
 st.session_state.fetchLiveData = st.checkbox('Fetch live data?', value = True)
 
+os.listdir(os.getcwd())
 uploaded_file = 'data/input.xlsx'
 st.session_state.df = load_data(uploaded_file, "asx_index_filtered")
 st.session_state.df_cagr = load_data(uploaded_file, "CAGR")
