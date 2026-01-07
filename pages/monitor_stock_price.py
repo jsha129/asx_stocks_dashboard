@@ -72,7 +72,7 @@ watchlist = ['VTS', 'QUAL', 'VGS'] # NDQ MOAT has data from May 2015 onwards => 
 
 
 with st.sidebar:
-    stock_nav_selection = [st.selectbox('Jump to ASX stock: ', watchlist)]
+    stock_nav_selection = [st.checkbox('Select stocks for comparison: ', watchlist)]
 
     if st.button("Go"):
         st.session_state.stocks = stock_nav_selection
