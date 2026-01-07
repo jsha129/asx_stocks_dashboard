@@ -72,7 +72,10 @@ watchlist = ['VTS', 'QUAL', 'VGS'] # NDQ MOAT has data from May 2015 onwards => 
 
 
 with st.sidebar:
-    stock_nav_selection = [st.checkbox('Select stocks for comparison: ', watchlist)]
+    st.subheader('Select stocks for comparison:')
+    stock_nav_selection = []
+    for i in watchlist:
+        res = st.checkbox(i, False)
 
     if st.button("Go"):
         st.session_state.stocks = stock_nav_selection
