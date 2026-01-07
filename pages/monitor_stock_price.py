@@ -26,8 +26,8 @@ def readTickerData(tickers):
     tickers = [c+'.AX' for c in tickers]
     t = Ticker(tickers)
     end = datetime.today()
-    start = end - timedelta(days=365*10)
-    after_date = pd.to_datetime("01/01/" + str(datetime.now().year - 10) , dayfirst=True)
+    start = end - timedelta(days=365)
+    after_date = pd.to_datetime("01/01/" + str(datetime.now().year - 1) , dayfirst=True)
     # time.sleep(10)   # pause per iteration
 
     # # --- WEEKLY PRICE DATA --- #
@@ -67,7 +67,7 @@ if "df" not in st.session_state:
 
 
 
-default_stock_indices = ['VTS', 'QUAL', 'VGS'] # NDQ MOAT has data from May 2015 onwards => affects charts
+watchlist = ['VTS', 'QUAL', 'VGS'] # NDQ MOAT has data from May 2015 onwards => affects charts
 
 
 
@@ -93,9 +93,8 @@ default_stock_indices = ['VTS', 'QUAL', 'VGS'] # NDQ MOAT has data from May 2015
 # with col1:
 st.subheader('Note: Turn off live data in the Home page if error appears here.')
 #! plot ticker price
-if st.session_state.fetchLiveData:
-    st.session_state.stocks.append('VAS')    
-    ticker_data = readTickerData(st.session_state.stocks)
+if st.session_state.fetchLiveData:  
+    ticker_data = readTickerData(watchlist)
     ticker_data_norm = 100*(ticker_data/ticker_data.iloc[0] -1)
     # print(ticker_data/ticker_data.iloc[0])
     # st.dataframe(ticker_data.head())
