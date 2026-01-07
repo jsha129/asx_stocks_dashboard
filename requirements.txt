@@ -4,3 +4,4 @@ streamlit
 yahooquery 
 matplotlib
 plotly
+seaborn
