@@ -66,19 +66,10 @@ if "df" not in st.session_state:
 #     st.session_state.stocks = ['WES']
 
 
-df = st.session_state.df
-df_cagr = st.session_state.df_cagr
-# st.session_state.selected_index = []
-# st.session_state.stocks = ['CBA']
+
 default_stock_indices = ['VTS', 'QUAL', 'VGS'] # NDQ MOAT has data from May 2015 onwards => affects charts
 
-# record = df.iloc[idx]
 
-dir_ticker_price = '/home/jay/Documents/python_stock_market/2024_July/yahooquery_more_data/data/prices/'
-# ticker_price_avail = sorted([ c.replace('.AX_weekly.csv','')  for c in os.listdir(dir_ticker_price)])
-# ticker_price_avail = df['Code'][:10,].to_list()
-ticker_price_avail = set(df_cagr['Code'].to_list()).intersection( set(st.session_state.df_avg_fund.index) ).intersection( set(st.session_state.df_raw_fund.index ) )
-ticker_price_avail = sorted(ticker_price_avail)
 
 # with st.sidebar:
 #     st.html('Data available on stocks: '+ str(len(ticker_price_avail)))
@@ -112,18 +103,4 @@ if st.session_state.fetchLiveData:
     st.line_chart(ticker_data_norm, y_label='% return')
 else:
     st.html('(Live data plot has been turned off)')
-## -- stock stats
-st.html('<b>Stock Performance (2015 - 2025) </b>')
-st.html('(Note: data has been precalculated offline)')
-if stock_nav_selection[0] in list(df_cagr['Code']):
-    temp = df_cagr[ df_cagr['Code'] == stock_nav_selection[0] ][ ['Code', 'Sector','annual_growth_percent','r_squared', 'n', 'freq'] ]
-    st.html('<b>Code: </b>' + str(temp.iloc[0,0]))
-    st.html('<b>Sector: </b>' + str(temp.iloc[0,1]))
-    st.html('<b>Annual growth rate, CAGR: </b>' + str(temp.iloc[0,2]) + '%')
-    st.html('<b>R-sqaured of the fit: </b>' + str(temp.iloc[0,3]))
-    st.html('<b>Number of Weeks data: </b>' + str(temp.iloc[0,4]))
-    # st.dataframe(temp.T)
-    # del temp
-else:
-    st.html('Data not available')
 
