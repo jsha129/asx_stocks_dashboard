@@ -96,10 +96,10 @@ with st.sidebar:
 
 # st.html(st.session_state.stocks)
 ticker_data = readTickerData(st.session_state.stocks)
-ticker_data_norm = 100*(ticker_data/ticker_data.iloc[0] -1)
+# ticker_data_norm = 100*(ticker_data/ticker_data.iloc[0] -1)
 # print(ticker_data/ticker_data.iloc[0])
 # st.dataframe(ticker_data.head())
-st.subheader('historic stock price (10 yr)')
-st.line_chart(ticker_data_norm, y_label='% return')
+# st.subheader('historic stock price (10 yr)')
+st.line_chart(ticker_data, y_label='Price')
 
 
