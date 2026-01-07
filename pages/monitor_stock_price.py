@@ -76,7 +76,8 @@ with st.sidebar:
     stock_nav_selection = []
     for i in watchlist:
         res = st.checkbox(i, False)
-        stock_nav_selection.append(res)
+        if res:
+            stock_nav_selection.append(i)
     
 
     if st.button("Go"):
