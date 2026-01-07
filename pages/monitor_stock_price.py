@@ -71,18 +71,12 @@ watchlist = ['VTS', 'QUAL', 'VGS'] # NDQ MOAT has data from May 2015 onwards => 
 
 
 
-# with st.sidebar:
-#     st.html('Data available on stocks: '+ str(len(ticker_price_avail)))
-#     stock_nav_selection = [st.selectbox('Jump to ASX stock: ', ticker_price_avail)]
-#     st.html('<b>Choose Reference Indices:')
-#     select_indices = []
-#     for i in default_stock_indices:
-#         temp_ref_index = st.checkbox(label = i)
-#         if temp_ref_index: 
-#             stock_nav_selection.append(i)
-#     if st.button("Go"):
-#         st.session_state.stocks = stock_nav_selection
-#         st.rerun()
+with st.sidebar:
+    stock_nav_selection = [st.selectbox('Jump to ASX stock: ', watchlist)]
+
+    if st.button("Go"):
+        st.session_state.stocks = stock_nav_selection
+        st.rerun()
     
 ## ---------------------------------------------------------------------------------
 ##! Main page
@@ -91,10 +85,9 @@ watchlist = ['VTS', 'QUAL', 'VGS'] # NDQ MOAT has data from May 2015 onwards => 
 # col1, col2 = st.columns(2)
 
 # with col1:
-st.subheader('Note: Turn off live data in the Home page if error appears here.')
 #! plot ticker price
 if st.session_state.fetchLiveData:  
-    ticker_data = readTickerData(watchlist)
+    ticker_data = readTickerData(st.session_state.stocks)
     ticker_data_norm = 100*(ticker_data/ticker_data.iloc[0] -1)
     # print(ticker_data/ticker_data.iloc[0])
     # st.dataframe(ticker_data.head())
