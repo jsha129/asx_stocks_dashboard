@@ -67,20 +67,29 @@ if "df" not in st.session_state:
 # if 'st.session_state.stocks' not in globals() :
 #     st.session_state.stocks = ['WES']
 
+watchlist_d = {'Price over 200' : ['PME', 'COH', 'REA'],
+              'Price over 50' : ['WTC', 'ALL'],
+              'Price under 50' : ['RMD', 'CDA', 'JIN', 'BXB', 'OCL', 'TNE', 'KOV', 'LYL', 'AEF']}
 
-
-watchlist = ['REA', 'RMD', 'CDA', 'WTC', 'JIN', 'BXB', 'COH',
-            'ALL', 'OCL', 'PME', 'TNE', 'KOV', 'LYL', 'AEF'] # NDQ MOAT has data from May 2015 onwards => affects charts
+# watchlist = ['REA', 'RMD', 'CDA', 'WTC', 'JIN', 'BXB', 'COH',
+#             'ALL', 'OCL', 'PME', 'TNE', 'KOV', 'LYL', 'AEF'] # NDQ MOAT has data from May 2015 onwards => affects charts
 
 
 
 with st.sidebar:
     st.subheader('Select stocks for comparison:')
     stock_nav_selection = []
-    for i in watchlist:
-        res = st.checkbox(i, False)
-        if res:
-            stock_nav_selection.append(i)
+    for k,v in watchlist_d.items():
+        st.html(k)
+        for i in v:
+            res = st.checkbox(i, False)
+            if res:
+                stock_nav_selection.append(i)
+        
+    # for i in watchlist:
+    #     res = st.checkbox(i, False)
+    #     if res:
+    #         stock_nav_selection.append(i)
     
 
     if st.button("Go"):
