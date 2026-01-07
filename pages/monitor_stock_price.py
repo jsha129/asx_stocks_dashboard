@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from io import BytesIO
 import re
 import matplotlib.pyplot as plt
+import seaborn as sns
 import os
 from yahooquery import Ticker
 
@@ -102,5 +103,21 @@ ticker_data = readTickerData(st.session_state.stocks)
 # st.dataframe(ticker_data.head())
 # st.subheader('historic stock price (10 yr)')
 # st.line_chart(np.log10(ticker_data), y_label='Log10 Price')
-st.line_chart(ticker_data, y_label='Price')
+# st.line_chart(ticker_data, y_label='Price')
+
+fig, ax = plt.subplots(figsize=(10, 5))
+
+# Seaborn automatically treats the index as the x-axis 
+# and creates a line for each column when passed as 'data'
+sns.lineplot(data=ticker_data, ax=ax)
+
+# Clean up the formatting
+ax.set_title("Stock Trends Over Time")
+ax.set_xlabel("Date")
+ax.set_ylabel("Price ($)")
+plt.xticks(rotation=45)
+plt.grid(True, alpha=0.3)
+
+# 4. Display in Streamlit
+st.pyplot(fig)
 
