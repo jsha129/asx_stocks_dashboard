@@ -100,6 +100,6 @@ ticker_data = readTickerData(st.session_state.stocks)
 # print(ticker_data/ticker_data.iloc[0])
 # st.dataframe(ticker_data.head())
 # st.subheader('historic stock price (10 yr)')
-st.line_chart(ticker_data, y_label='Price')
+st.line_chart(np.log10(ticker_data), y_label='Log10 Price')
 
 
