@@ -67,7 +67,8 @@ if "df" not in st.session_state:
 
 
 
-watchlist = ['VTS', 'QUAL', 'VGS'] # NDQ MOAT has data from May 2015 onwards => affects charts
+watchlist = ['REA', 'RMD', 'CDA', 'WTC', 'JIN', 'BXB', 'COH',
+            'ALL', 'OCL', 'PME', 'TNE', 'KOV', 'LYL', 'AEF'] # NDQ MOAT has data from May 2015 onwards => affects charts
 
 
 
@@ -93,7 +94,7 @@ with st.sidebar:
 # with col1:
 #! plot ticker price
 
-st.html(st.session_state.stocks)
+# st.html(st.session_state.stocks)
 ticker_data = readTickerData(st.session_state.stocks)
 ticker_data_norm = 100*(ticker_data/ticker_data.iloc[0] -1)
 # print(ticker_data/ticker_data.iloc[0])
