@@ -1,6 +1,7 @@
 # ---- File: pages/record_view.py ----
 import streamlit as st
 import pandas as pd
+import numpy as np
 from datetime import datetime, timedelta
 from io import BytesIO
 import re
@@ -100,6 +101,6 @@ ticker_data = readTickerData(st.session_state.stocks)
 # print(ticker_data/ticker_data.iloc[0])
 # st.dataframe(ticker_data.head())
 # st.subheader('historic stock price (10 yr)')
-st.line_chart(ticker_data.log10(), y_label='Log10 Price')
+st.line_chart(np.log10(ticker_data), y_label='Log10 Price')
 
 
