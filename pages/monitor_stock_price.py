@@ -33,7 +33,7 @@ def readTickerData(tickers):
     # # --- WEEKLY PRICE DATA --- #
     price_df = t.history(start=after_date.strftime("%Y-%m-%d"), # already defined as 01-01-YYYY
                      end=end.strftime("%Y-%m-%d"),
-                     interval="1wk")
+                     interval="1d")
     price_df = price_df.round(2)
     price_df = price_df.reset_index()
     price_df['date'] = pd.to_datetime(price_df['date'], format='mixed', utc=True)
@@ -98,7 +98,7 @@ if st.session_state.fetchLiveData:
     ticker_data_norm = 100*(ticker_data/ticker_data.iloc[0] -1)
     # print(ticker_data/ticker_data.iloc[0])
     # st.dataframe(ticker_data.head())
-    st.subheader(stock_nav_selection[0]+ ' historic stock price (10 yr)')
+    st.subheader('historic stock price (10 yr)')
     st.line_chart(ticker_data_norm, y_label='% return')
 else:
     st.html('(Live data plot has been turned off)')
