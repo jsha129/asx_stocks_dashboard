@@ -91,13 +91,13 @@ with st.sidebar:
 
 # with col1:
 #! plot ticker price
-if st.session_state.fetchLiveData:  
-    ticker_data = readTickerData(st.session_state.stocks)
-    ticker_data_norm = 100*(ticker_data/ticker_data.iloc[0] -1)
-    # print(ticker_data/ticker_data.iloc[0])
-    # st.dataframe(ticker_data.head())
-    st.subheader('historic stock price (10 yr)')
-    st.line_chart(ticker_data_norm, y_label='% return')
-else:
-    st.html('(Live data plot has been turned off)')
+
+st.html(st.session_state.stocks)
+ticker_data = readTickerData(st.session_state.stocks)
+ticker_data_norm = 100*(ticker_data/ticker_data.iloc[0] -1)
+# print(ticker_data/ticker_data.iloc[0])
+# st.dataframe(ticker_data.head())
+st.subheader('historic stock price (10 yr)')
+st.line_chart(ticker_data_norm, y_label='% return')
+
 
