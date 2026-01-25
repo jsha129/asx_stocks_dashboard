@@ -5,3 +5,4 @@ yahooquery
 matplotlib
 plotly
 seaborn
+altair
