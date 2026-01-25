@@ -1,6 +1,6 @@
 openpyxl
 pandas
-streamlit
+streamlit=1.30
 yahooquery 
 matplotlib
 plotly
