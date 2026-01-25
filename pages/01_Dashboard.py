@@ -48,6 +48,7 @@ col1, col2 = st.columns(2)
 with col1:
     # ##! Fundamental dats
     #! avg fundamental ratio
+    st.subheader('Fundamental data')
     if stock_nav_selection[0] in list(st.session_state.df_avg_fund.index):    
         temp_fund_avg = st.session_state.df_avg_fund.loc[stock_nav_selection[0] ]
         temp_fund_avg = temp_fund_avg.to_dict()
@@ -68,11 +69,10 @@ with col1:
 
 
 with col2:
-    # st.html('<b>Stock Performance</b>')
     if stock_nav_selection[0] in list(df_cagr['Code']):
         temp = df_cagr[ df_cagr['Code'] == stock_nav_selection[0] ][ ['Code', 'Sector','annual_growth_percent','r_squared', 'n', 'freq'] ]
         # st.html('<b>Code: </b>' + str(temp.iloc[0,0]))
-        st.subheader(str(temp.iloc[0,0]))
+        st.subheader(str(temp.iloc[0,0]) + ' - 10 year Stock price')
         st.html('<b>Sector: </b>' + str(temp.iloc[0,1]))
         st.html('<b>Annual growth rate, CAGR: </b>' + str(temp.iloc[0,2]) + '%')
         st.html('<b>R-sqaured of the fit: </b>' + str(temp.iloc[0,3]))
