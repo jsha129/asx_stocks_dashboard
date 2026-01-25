@@ -6,4 +6,3 @@ matplotlib
 plotly
 seaborn
 altair<5
-vega
