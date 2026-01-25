@@ -5,5 +5,5 @@ yahooquery
 matplotlib
 plotly
 seaborn
-altair
+altair<5
 vega
